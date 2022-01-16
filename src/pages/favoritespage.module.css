@@ -1,0 +1,44 @@
+.sectionContent {
+  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #5800ff;
+  position: relative;
+  top: 25vh;
+  left: 2vw;
+  list-style: none;
+  justify-content: space-between;
+  width: 95vw;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border-radius: 10px;
+}
+
+.sectionItem {
+  padding: 0;
+}
+
+.homeBtn {
+  display: block;
+  text-decoration: none;
+  height: 8vh;
+  width: 10vw;
+  background-color: crimson;
+  color: white;
+  border-radius: 10px;
+  position: absolute;
+  text-align: center;
+  top: 10vh;
+  left: 45vw;
+  padding: 1%;
+}
+
+@media only screen and (max-width: 768px) {
+  .homeBtn {
+    width: 30vw;
+    padding: 3%;
+    top: 15vh;
+    left: 35vw;
+  }
+}
