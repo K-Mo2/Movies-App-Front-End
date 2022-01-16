@@ -47,7 +47,7 @@ export default function Section() {
   return (
     <div>
       <div className={styles.sectionHeader}>
-        <h3 className={styles.sectionTitle}>The last 10 movies</h3>
+        <h3 className={styles.sectionTitle}>The Latest Movies</h3>
       </div>
       <div>
         <ul className={styles.sectionContent}>
@@ -67,6 +67,7 @@ export default function Section() {
                   </li>
                 );
               }
+              return null;
             })}
         </ul>
       </div>

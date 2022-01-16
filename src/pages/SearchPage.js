@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { appContext } from "../context/app-context";
 import MovieCard from "../components/MovieCard";
 import styles from "../components/section.module.css";
@@ -15,31 +15,34 @@ export default function SearchPage() {
 
   const url = "https://movies-app-back-end.herokuapp.com";
 
-  const searchMovie = async function () {
-    setIsloading(true);
-    try {
-      const response = await fetch(url + "/search", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          searchQuery: searchQuery,
-        }),
-      });
+  const searchMovie = useCallback(
+    async function searchMovie() {
+      setIsloading(true);
+      try {
+        const response = await fetch(url + "/search", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            searchQuery: searchQuery,
+          }),
+        });
 
-      const data = await response.json();
-      setDataState(data.results);
-    } catch (error) {
-      setError(true);
-      new Error(error);
-    }
-    setIsloading(false);
-  };
+        const data = await response.json();
+        setDataState(data.results);
+      } catch (error) {
+        setError(true);
+        new Error(error);
+      }
+      setIsloading(false);
+    },
+    [searchQuery]
+  );
 
   useEffect(() => {
     searchMovie();
-  }, []);
+  }, [searchMovie]);
 
   return (
     <div>

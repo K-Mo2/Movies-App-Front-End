@@ -40,7 +40,7 @@ export default function MovieCard(props) {
         },
         body: JSON.stringify({ id: props.id }),
       });
-      const data = await response.json();
+       await response.json();
     } catch (error) {
       throw new Error({ Error: error });
     }
