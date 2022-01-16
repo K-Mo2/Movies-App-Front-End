@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useCallback } from "react";
 import styles from "./section.module.css";
 import MovieCard from "./MovieCard";
 import { appContext } from "../context/app-context";
@@ -11,14 +11,7 @@ export default function Section() {
   const [error, setError] = useState(false);
   const [flag, setFlag] = useState(true);
 
-  const context = useContext(appContext);
-
-  useEffect(() => {
-    if (flag) {
-      fetchData();
-      favoriteMoviesId();
-    }
-  }, [flag]);
+  const { favoriteMoviesHandler } = useContext(appContext);
 
   const fetchData = async function () {
     try {
@@ -35,14 +28,24 @@ export default function Section() {
     }
   };
 
-  const favoriteMoviesId = async function () {
-    const response = await fetch(url + "/favorites");
-    const data = await response.json();
-    const ids = data.map((movie) => {
-      return movie.id;
-    });
-    context.favoriteMoviesHandler(ids);
-  };
+  const favoriteMoviesId = useCallback(
+    async function favoriteMoviesId() {
+      const response = await fetch(url + "/favorites");
+      const data = await response.json();
+      const ids = data.map((movie) => {
+        return movie.id;
+      });
+      favoriteMoviesHandler(ids);
+    },
+    [favoriteMoviesHandler]
+  );
+
+  useEffect(() => {
+    if (flag) {
+      fetchData();
+      favoriteMoviesId();
+    }
+  }, [flag, favoriteMoviesId]);
 
   return (
     <div>

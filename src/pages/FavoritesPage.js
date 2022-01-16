@@ -11,10 +11,6 @@ export default function FavoritesPage() {
   const [isLoading, setIsloading] = useState(false);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    fetchMovies();
-  }, []);
-
   const fetchMovies = async function () {
     try {
       setIsloading(true);
@@ -28,6 +24,10 @@ export default function FavoritesPage() {
       throw new Error({ Error: error });
     }
   };
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
   return (
     <div>
