@@ -54,7 +54,7 @@ export default function SearchPage() {
           Home
         </Link>
       </div>{" "}
-      <ul className={styles.sectionContent}>
+      <ul className={style.sectionContent}>
         {!error &&
           !isLoading &&
           dataState.map((el) => {
