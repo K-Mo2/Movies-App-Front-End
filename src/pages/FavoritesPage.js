@@ -12,6 +12,7 @@ export default function FavoritesPage() {
   const [error, setError] = useState(false);
 
   const fetchMovies = async function () {
+    
     try {
       setIsloading(true);
       const response = await fetch(url + "/favorites");
@@ -19,9 +20,10 @@ export default function FavoritesPage() {
 
       setFavoritesState(data);
       setIsloading(false);
+    
     } catch (error) {
-      setError(true);
-      throw new Error({ Error: error });
+        setError(true);
+        throw new Error({ Error: error });
     }
   };
 
@@ -32,8 +34,10 @@ export default function FavoritesPage() {
   return (
     <div>
       <div>
-        <Link to="/" className={style.homeBtn}>
-          Home
+        <Link to="/" >
+          <div className={style.homeBtn}>
+              <div className={style.btnText}>Home</div> 
+          </div>
         </Link>
       </div>
       <header>
@@ -43,9 +47,10 @@ export default function FavoritesPage() {
         <section>
           <div>
             <ul className={styles.sectionContent}>
-              {!error &&
+              { !error &&
                 !isLoading &&
-                favoritesState.map((movie) => {
+                 favoritesState &&
+                 favoritesState?.map((movie) => {
                   return (
                     <li key={movie.id} className={styles.sectionItem}>
                       <MovieCard

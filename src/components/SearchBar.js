@@ -25,7 +25,7 @@ export default function SearchBar() {
         }}
       />
       <button onClick={submitHandler} className={styles.submitBtn}>
-        Submit
+        <div className={styles.btnText} >Submit</div>
       </button>
     </div>
   );

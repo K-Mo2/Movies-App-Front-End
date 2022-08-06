@@ -20,7 +20,7 @@
 }
 
 .homeBtn {
-  display: block;
+  display: felx;
   text-decoration: none;
   height: 8vh;
   width: 10vw;
@@ -29,9 +29,18 @@
   border-radius: 10px;
   position: absolute;
   text-align: center;
-  top: 10vh;
+  align-items: center;
+  justify-content: center;
+  top: 7vh;
   left: 45vw;
-  padding: 1%;
+  font-weight: bold;
+  font-size: large;
+}
+
+.btnText {
+  width: auto;
+  height: auto;
+  margin-top: 15%;
 }
 
 @media only screen and (max-width: 768px) {

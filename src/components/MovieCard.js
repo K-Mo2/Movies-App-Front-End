@@ -8,8 +8,8 @@ export default function MovieCard(props) {
   const imgURL = "https://image.tmdb.org/t/p/w500/";
 
   const serverURL = "https://movies-app-back-end.herokuapp.com";
-
-  const [isFavorite, setIsFavortie] = useState();
+  
+  const [isFavorite, setIsFavorite] = useState();
   const [error, setError] = useState(false);
 
   const context = useContext(appContext);
@@ -48,8 +48,14 @@ export default function MovieCard(props) {
 
   useEffect(() => {
     setTimeout(() => {
-      if (context.favoriteMovies.includes(props.id)) {
-        setIsFavortie(true);
+      try {
+
+          if (context.favoriteMovies.includes(props.id)) {
+            setIsFavorite(true);
+          }
+        }
+      catch (error) {
+        throw new Error({ Error: error });
       }
     }, 0);
   }, [context.favoriteMovies, props.id]);
@@ -75,7 +81,7 @@ export default function MovieCard(props) {
           size="2x"
           onClick={() => {
             isFavorite ? removeFavoriteHandler() : addFavoriteHandler();
-            setIsFavortie(!isFavorite);
+            setIsFavorite(!isFavorite);
           }}
         />
       </div>

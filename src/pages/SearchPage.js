@@ -31,9 +31,10 @@ export default function SearchPage() {
 
         const data = await response.json();
         setDataState(data.results);
+      
       } catch (error) {
-        setError(true);
-        new Error(error);
+          setError(true);
+          new Error({Error: error});
       }
       setIsloading(false);
     },
@@ -49,15 +50,16 @@ export default function SearchPage() {
       <header>
         <h1 className={style.headerTag}>{searchQuery} Movies</h1>
       </header>
-      <div>
-        <Link to="/" className={style.homeBtn}>
-          Home
+        <Link to="/">
+          <div className={style.homeBtn}>
+              <div className={style.btnText}>Home</div> 
+          </div>
         </Link>
-      </div>{" "}
       <ul className={style.sectionContent}>
-        {!error &&
+        { !error &&
           !isLoading &&
-          dataState.map((el) => {
+           dataState && 
+           dataState.map((el) => {
             return (
               <li className={styles.sectionItem} key={el.id}>
                 {" "}

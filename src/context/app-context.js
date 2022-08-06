@@ -14,9 +14,11 @@ const AppContextProvider = function (props) {
   const searchTermHandler = function (term) {
     setSearchTerm(term);
   };
+
   const favoriteMoviesHandler = function (favorites) {
     setFavoriteMovies(favorites);
   };
+  
   return (
     <appContext.Provider
       value={{
